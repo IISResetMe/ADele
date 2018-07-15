@@ -62,7 +62,7 @@ function Get-ADSchemaAttribute {
         )
     }
 
-    $attrSchema = Get-ADObject -Filter "lDAPDisplayName -eq '$Name' -and objectClass -eq attributeSchema" @PSBoundParameters
+    $attrSchema = Get-ADObject -Filter "lDAPDisplayName -eq '$Name' -and objectClass -eq 'attributeSchema'" @PSBoundParameters
 
     switch -Exact ($PSCmdlet.ParameterSetName){
         'GuidOnly' {

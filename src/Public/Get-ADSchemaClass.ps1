@@ -1,4 +1,4 @@
-function Get-ADSchemaAttribute {
+function Get-ADSchemaClass {
     [CmdletBinding(DefaultParameterSetName='__default')]
     param(
         [Parameter(Mandatory=$true,Position=0)]
@@ -57,7 +57,7 @@ function Get-ADSchemaAttribute {
         )
     }
 
-    $classSchema = Get-ADObject -Filter "lDAPDisplayName -eq '$Name' -and objectClass -eq classSchema" @PSBoundParameters
+    $classSchema = Get-ADObject -Filter "lDAPDisplayName -eq '$Name' -and objectClass -eq 'classSchema'" @PSBoundParameters
 
     switch -Exact ($PSCmdlet.ParameterSetName){
         'GuidOnly' {
