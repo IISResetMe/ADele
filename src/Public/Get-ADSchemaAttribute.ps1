@@ -29,9 +29,6 @@ function Get-ADSchemaAttribute {
         [switch]$Syntax
     )
 
-    # Escape input ldapDisplayName
-    $Name = Escape-LDAPQueryFilter $Name
-
     # Remove parameters specific to this function from $PSBoundParameters
     # Allows for easy param reuse with ActiveDirectory cmdlets
     'Name','Syntax','Guid' |ForEach-Object {
@@ -64,6 +61,8 @@ function Get-ADSchemaAttribute {
 
     $attrSchema = switch -Exact ($PSCmdlet.ParameterSetName){
         'ByName' {
+            # Escape input ldapDisplayName
+            $Name = Escape-LDAPQueryFilter $Name
             Get-ADObject -Filter "lDAPDisplayName -eq '$Name' -and objectClass -eq 'attributeSchema'" @PSBoundParameters
         }
         'ByGuid' {
