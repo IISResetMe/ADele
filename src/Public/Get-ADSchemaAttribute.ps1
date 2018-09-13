@@ -104,5 +104,5 @@ function Get-ADSchemaAttribute {
         return $attrSyntax
     }
 
-    return $attrSchema |Add-Member -MemberType NoteProperty -Name Syntax -Value $attrSyntax -PassThru
+    return $attrSchema |Add-Member -MemberType NoteProperty -Name Syntax -Value $attrSyntax -Force -PassThru
 }
