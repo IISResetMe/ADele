@@ -66,7 +66,7 @@ function Get-ADSchemaAttribute {
             Get-ADObject -Filter "lDAPDisplayName -eq '$Name' -and objectClass -eq 'attributeSchema'" @PSBoundParameters
         }
         'ByGuid' {
-            Get-ADObject -Filter "schemaIDGUID -eq '$Guid' -and objectClass -eq 'attributeSchema'" @PSBoundParameters
+            Get-ADObject -LDAPFilter "(&(schemaIDGUID=$(($Guid.ToByteArray()|% ToString 'X2' |%{"\$_"})-join''))(objectClass=attributeSchema))" @PSBoundParameters
         }
     }
 
