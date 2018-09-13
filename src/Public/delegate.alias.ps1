@@ -1,1 +1,1 @@
-New-Alias delegate -Definition New-ADDelegation
+New-Alias delegate -Value New-ADDelegation
