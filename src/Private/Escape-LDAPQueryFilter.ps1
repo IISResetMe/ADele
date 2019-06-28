@@ -2,7 +2,9 @@ function Escape-LDAPQueryFilter {
 
     param(
         [Parameter(Mandatory=$true,Position=0,ValueFromPipeline=$true)]
-        [string]$Filter
+        [string]$Filter,
+        
+        [switch]$SkipWildcard
     )
 
     $escapedFilter = ""
@@ -13,7 +15,12 @@ function Escape-LDAPQueryFilter {
                 $escapedFilter += "\5c"
             }
             '*' {
-                $escapedFilter += "\2a"
+                if($SkipWildcard) {
+                    $escapedFilter += $c
+                }
+                else {
+                    $escapedFilter += "\2a"
+                }
             }
             '(' {
                 $escapedFilter += "\28"
